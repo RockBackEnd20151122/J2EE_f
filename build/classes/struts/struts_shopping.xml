@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="shopping" namespace="/shopping" extends="myBasePackage">
+		<action name="queryProductAction" class="shoppingAction"
+			method="queryProduct">
+			<result name="success">/shop/shopping.jsp</result>
+			<result name="error">/common/error.jsp</result>
+		</action>
+		<action name="addShoppingCartAction" class="shoppingAction"
+			method="addShoppingCart">
+			<result name="success">/common/success.jsp</result>
+			<result name="error">/common/error.jsp</result>
+		</action>
+		<action name="queryShopCartAction" class="shoppingAction"
+			method="queryShopCart">
+			<result name="success">/shop/shopCart.jsp</result>
+			<result name="error">/common/error.jsp</result>
+		</action>
+
+		<action name="updateShopCartAction" class="shoppingAction"
+			method="updateShopCart">
+			<result name="success">/shop/shopCart.jsp</result>
+			<result name="error">/common/error.jsp</result>
+		</action>
+	</package>
+</struts>

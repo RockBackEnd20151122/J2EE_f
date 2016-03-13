@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.ProductDao">
+	<resultMap type="com.shopping.dto.ProductDto" id="product">
+		<result property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+		<result property="productPrice" column="product_price" />
+		<result property="productType" column="product_type" />
+		<result property="productStatus" column="product_status" />
+		<result property="productCount" column="product_count" />
+		<result property="productDiscount" column="product_discount" />
+		<result property="productImage" column="product_image" />
+		<result property="productRemark" column="product_remark" />
+		<result property="createBy" column="create_by" />
+		<result property="createTime" column="create_time" />
+		<result property="updateBy" column="update_by" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+	<select id="queryProductList" resultMap="product"
+		parameterType="com.shopping.dto.ProductDto">
+		select * from product
+		<include refid="selectOption" />
+		order by product_name
+	</select>
+
+	<!-- 多条件查询语句 -->
+	<sql id="selectOption">
+		<where>
+			<if test="productName!=null and productName!=''">and product_name like '%${productName}%'</if>
+			<if test="productType!=null and productType!=''">and product_type = ${productType}</if>
+			<if test="productPriceStart!=null and productPriceStart!=''">and product_price&gt;= ${productPriceStart}</if>
+			<if test="productPriceEnd!=null and productPriceEnd!=''">and product_price &lt;= ${productPriceEnd}</if>
+		</where>
+	</sql>
+	<select id="queryProductById" resultMap="product" parameterType="java.lang.String">
+		select * from product
+		where product_id = #{productId};
+	</select>
+</mapper>
